@@ -116,6 +116,7 @@ Do not reload a reference file already in context for this session.
 | `references/seo-playbook.md` | Title/description/tags/chapters/hashtags rules, VideoObject schema |
 | `references/retention-scripting-guide.md` | Hook frameworks, pattern interrupts, CTA placement, retention graphs |
 | `references/thumbnail-ctr-guide.md` | CTR by niche, face psychology, A/B testing, title formulas |
+| `references/thumbnail-image-prompts.md` | Image-model prompt patterns for thumbnails (Nano Banana / GPT-4o), what not to borrow |
 | `references/shorts-playbook.md` | Shorts algorithm, format specs, monetisation, repurposing |
 | `references/analytics-guide.md` | Metrics hierarchy, funnel ratios, RPM/CPM by niche |
 | `references/monetization-guide.md` | YPP tiers, 7 revenue streams, brand deal rates |
@@ -195,7 +196,7 @@ actual thumbnail images using Gemini models instead of just producing text brief
 thumbnail briefs only — they are detailed enough for any designer to execute.
 
 **Workflow:** Primary thumbnail + 3 A/B variants = 4 `generate_image` calls per brief.
-See `sub-skills/thumbnail.md` for prompt engineering guidelines.
+See `sub-skills/thumbnail.md` for the workflow and `references/thumbnail-image-prompts.md` for prompt patterns.
 
 ## Execution Scripts
 
