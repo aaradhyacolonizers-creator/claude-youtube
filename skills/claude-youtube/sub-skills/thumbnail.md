@@ -17,6 +17,7 @@ This sub-skill produces a detailed thumbnail design brief with three A/B test va
 
 - `references/thumbnail-ctr-guide.md`
 - `references/seo-playbook.md`
+- `references/thumbnail-image-prompts.md` (only when generating images)
 
 ## DataForSEO Research (When Available)
 
@@ -41,7 +42,7 @@ When the NanoBanana MCP server is configured, generate actual thumbnail images u
 - `output_path`: user's project directory or `~/nanobanana-images/`
 
 **Workflow:**
-1. After generating the primary thumbnail brief, convert it into a detailed image generation prompt
+1. After generating the primary thumbnail brief, convert it into a detailed image generation prompt. Load `references/thumbnail-image-prompts.md`, pick the closest pattern from its Pattern Library, and use the structured spec shape when the brief has more than ~4 hard constraints
 2. Generate the primary thumbnail: call `generate_image` with a prompt derived from the brief (focal point, expression, text overlay, colour palette, composition all specified)
 3. Generate each A/B variant: call `generate_image` with the variant's modified prompt
 4. Present all 4 images (primary + 3 variants) to the user for review
@@ -54,6 +55,8 @@ When the NanoBanana MCP server is configured, generate actual thumbnail images u
 - Include background colour: "solid [colour] background" or "blurred [scene] background"
 - Add "high contrast, vibrant colours, clean composition" for thumbnail aesthetics
 - Mention "legible at small size" to encourage clear focal points
+- If the creator supplied a face photo, add the identity-preservation line from the prompt guide
+- Never use real celebrities, trademarked characters or suggestive framing (see "What Not to Borrow" in the prompt guide)
 
 **Fallback:** If NanoBanana MCP is unavailable, deliver the text-based thumbnail brief only.
 The brief is detailed enough for any designer to execute.

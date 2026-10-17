@@ -4,7 +4,7 @@
 
 A comprehensive [Claude Code](https://claude.com/claude-code) skill for YouTube creators. Covers channel audits, video SEO, retention-engineered scripts, hook writing, thumbnail briefs, content strategy, content calendars, Shorts optimization, analytics interpretation, monetization planning, competitor research, cross-platform repurposing, upload metadata packages, and data-driven video idea generation.
 
-**39 files** | **5,300+ lines of markdown** | **1,300+ lines of Python** | **14 sub-skills** | **9 reference guides** | **9 channel templates** | **6 execution scripts**
+**40 files** | **5,400+ lines of markdown** | **1,300+ lines of Python** | **14 sub-skills** | **10 reference guides** | **9 channel templates** | **6 execution scripts**
 
 ---
 
@@ -44,11 +44,12 @@ skills/claude-youtube/
     audit.md, seo.md, script.md, hook.md, thumbnail.md,
     strategy.md, calendar.md, shorts.md, analyze.md,
     repurpose.md, monetize.md, competitor.md, metadata.md, ideate.md
-  references/                       # 9 data-grounded reference guides
+  references/                       # 10 data-grounded reference guides
     algorithm-guide.md              # 3-system architecture, testing cascade, CTR/AVD benchmarks
     seo-playbook.md                 # Title/description/tags/chapters rules, VideoObject schema
     retention-scripting-guide.md    # Hook frameworks, pattern interrupts, CTA placement
     thumbnail-ctr-guide.md          # CTR by niche, face psychology, A/B testing, title formulas
+    thumbnail-image-prompts.md      # Image-model prompt patterns for generated thumbnails
     shorts-playbook.md              # Shorts algorithm, format specs, monetization
     analytics-guide.md              # Metrics hierarchy, funnel ratios, RPM/CPM by niche
     monetization-guide.md           # YPP tiers, 7 revenue streams, brand deal rates
@@ -187,6 +188,7 @@ All benchmarks and statistics in the reference guides are sourced and tagged:
 - **Monetization rates** -- YouTube Creator Academy, industry reports
 - **SEO rules** -- 10xCreator (3M+ videos analyzed), Backlinko, HubSpot
 - **MrBeast methodology** -- Validated at 100M+ views/video scale
+- **Thumbnail image prompts** -- Patterns adapted from the [Awesome Prompt Gallery](https://opennana.com/awesome-prompt-gallery/) curated by 松果先森
 
 Data points tagged with `[2025]` reflect 2024-2025 platform changes.
 

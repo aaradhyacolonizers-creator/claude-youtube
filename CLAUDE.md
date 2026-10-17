@@ -5,7 +5,7 @@
 This repository contains **Claude YouTube**, a Claude Code skill for YouTube creators.
 It covers channel audits, video SEO, retention-engineered scripts, hook writing, thumbnail
 briefs, content strategy, Shorts optimization, analytics, monetization, competitor research,
-and cross-platform repurposing. 14 sub-skills, 9 reference guides, 9 channel templates,
+and cross-platform repurposing. 14 sub-skills, 10 reference guides, 9 channel templates,
 and 6 execution scripts.
 
 ## Architecture
@@ -19,7 +19,7 @@ claude-youtube/
       audit.md, seo.md, script.md, hook.md, thumbnail.md,
       strategy.md, calendar.md, shorts.md, analyze.md,
       repurpose.md, monetize.md, competitor.md, metadata.md, ideate.md
-    references/                      # 9 on-demand knowledge guides
+    references/                      # 10 on-demand knowledge guides
     templates/                       # 9 channel type templates
     execution/                       # 6 Python scripts
       fetch_channel_data.py         # YouTube Data API v3 channel stats
