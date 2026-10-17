@@ -5,12 +5,14 @@ description: >
   retention-engineered scripts, hook writing, thumbnail briefs, content
   strategy, content calendars, Shorts optimisation, analytics interpretation,
   monetisation planning, competitor research, cross-platform repurposing,
-  upload metadata packages, and data-driven video idea generation.
+  upload metadata packages, data-driven video idea generation, and automated
+  vlog editing from raw footage with ffmpeg.
   Triggers on: "youtube", "channel", "video", "views", "subscribers",
   "watch time", "shorts", "thumbnail", "CTR", "retention", "monetize",
   "script", "hook", "upload", "youtube audit", "video ideas",
   "content calendar", "competitor analysis", "repurpose video",
-  "youtube seo", "youtube strategy", "youtube analytics".
+  "youtube seo", "youtube strategy", "youtube analytics", "edit my vlog",
+  "auto edit footage", "cut my video".
 tools:
   - Read
   - Write
@@ -24,7 +26,7 @@ tools:
 
 # Claude YouTube — YouTube Creator Skill
 
-> Orchestrator for 14 sub-skills covering every aspect of YouTube channel growth,
+> Orchestrator for 15 sub-skills covering every aspect of YouTube channel growth,
 > optimisation, and monetisation. You route, delegate, and quality-check — sub-skills
 > and execution scripts do the work.
 
@@ -46,6 +48,7 @@ tools:
 | `/youtube competitor` | `sub-skills/competitor.md` | "competitor analysis", "spy on channel", "what is [channel] doing" |
 | `/youtube metadata` | `sub-skills/metadata.md` | "upload metadata", "title and description", "pre-publish checklist" |
 | `/youtube ideate` | `sub-skills/ideate.md` | "video ideas", "what should I make next", "brainstorm", "content ideas" |
+| `/youtube edit` | `sub-skills/edit.md` | "edit my vlog", "auto edit", "cut my footage", "turn these clips into a video" |
 
 If the user's request doesn't clearly match one command, ask a clarifying question.
 If the request spans multiple sub-skills (e.g., "help me plan and script my next video"),
@@ -64,6 +67,9 @@ Before invoking ANY sub-skill, you MUST collect these three inputs. If any are m
 3. **Primary goal:** Growth / Monetisation / Brand Authority / Audience Engagement
 
 For `audit`, `analyze`, and `competitor` sub-skills, also collect the channel URL or handle.
+
+Exception: `edit` works on local footage and needs only the footage folder and vlog topic —
+skip the three inputs above unless the user offers them.
 
 ## Channel Type Detection
 
@@ -116,6 +122,7 @@ Do not reload a reference file already in context for this session.
 | `references/monetization-guide.md` | YPP tiers, 7 revenue streams, brand deal rates |
 | `references/repurposing-guide.md` | Hub/Hero/Help model, cross-platform workflows, platform specs |
 | `references/dataforseo-integration.md` | DataForSEO MCP tool reference, YouTube SERP, keyword research, trends |
+| `references/vlog-editing-guide.md` | ffmpeg/ASR/vision toolchain, vlog pacing benchmarks, render recipes, editing pitfalls |
 
 ## DataForSEO MCP Integration (Optional)
 
@@ -193,7 +200,7 @@ See `sub-skills/thumbnail.md` for the workflow and `references/thumbnail-image-p
 
 ## Execution Scripts
 
-Scripts require YouTube API credentials. Before calling any script:
+Scripts that call the YouTube API require credentials (`vlog_edit_tools.py` does not). Before calling any of them:
 1. Check if `YOUTUBE_API_KEY` environment variable exists
 2. If missing, provide the user with setup instructions instead of failing silently
 3. For Analytics API scripts, check OAuth token exists
@@ -207,6 +214,7 @@ If credentials are absent, fall back to asking the user to provide data manually
 | `execution/fetch_video_analytics.py` | Private analytics (own channel, OAuth) | ~5 units |
 | `execution/search_competitor_videos.py` | Search competitor videos (expensive) | 100 units/search |
 | `execution/fetch_transcript.py` | Video transcript extraction | 1-2 units |
+| `execution/vlog_edit_tools.py` | Footage cleanup suggestions + speech-cut fixer for `edit` (local, no API key) | 0 units |
 | `execution/utils/quota_tracker.py` | Tracks 10K unit/day quota | 0 units |
 | `execution/utils/youtube_auth.py` | API key + OAuth handler | 0 units |
 

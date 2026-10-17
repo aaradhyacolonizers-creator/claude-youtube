@@ -2,9 +2,9 @@
 
 > **Status: Beta** -- Actively developed. Core functionality is complete and tested. Breaking changes may occur before v1.0.
 
-A comprehensive [Claude Code](https://claude.com/claude-code) skill for YouTube creators. Covers channel audits, video SEO, retention-engineered scripts, hook writing, thumbnail briefs, content strategy, content calendars, Shorts optimization, analytics interpretation, monetization planning, competitor research, cross-platform repurposing, upload metadata packages, and data-driven video idea generation.
+A comprehensive [Claude Code](https://claude.com/claude-code) skill for YouTube creators. Covers channel audits, video SEO, retention-engineered scripts, hook writing, thumbnail briefs, content strategy, content calendars, Shorts optimization, analytics interpretation, monetization planning, competitor research, cross-platform repurposing, upload metadata packages, data-driven video idea generation, and automated vlog editing from raw footage.
 
-**40 files** | **5,400+ lines of markdown** | **1,300+ lines of Python** | **14 sub-skills** | **10 reference guides** | **9 channel templates** | **6 execution scripts**
+**43 files** | **5,700+ lines of markdown** | **1,500+ lines of Python** | **15 sub-skills** | **11 reference guides** | **9 channel templates** | **7 execution scripts**
 
 ---
 
@@ -12,7 +12,7 @@ A comprehensive [Claude Code](https://claude.com/claude-code) skill for YouTube 
 
 claude-youtube turns Claude Code into a YouTube growth consultant. Instead of generic advice, every recommendation is grounded in platform-specific benchmarks, algorithm mechanics, and data from your actual channel.
 
-### 14 Commands
+### 15 Commands
 
 | Command | What It Does |
 |---------|-------------|
@@ -30,6 +30,7 @@ claude-youtube turns Claude Code into a YouTube growth consultant. Instead of ge
 | `/youtube competitor` | Competitor analysis with 4 parallel agents: top videos, keyword gaps, format gaps, audience gaps |
 | `/youtube metadata` | Copy-paste-ready upload package: titles, description, tags, chapters, cards, end screens, publish settings |
 | `/youtube ideate` | 10 ranked video ideas with keyword analysis, hook angles, thumbnail concepts, and revenue potential |
+| `/youtube edit` | Raw footage to finished vlog: clip analysis (ASR + loudness + vision), story-driven edit plan, speech-cut validation, ffmpeg render with cold open, titles, and BGM |
 
 ---
 
@@ -40,11 +41,11 @@ Built on the [Agent Skills](https://github.com/anthropics/claude-code) open stan
 ```
 skills/claude-youtube/
   SKILL.md                          # Orchestrator (routing, context-gathering, quality gates)
-  sub-skills/                       # 14 sub-skill instruction files
+  sub-skills/                       # 15 sub-skill instruction files
     audit.md, seo.md, script.md, hook.md, thumbnail.md,
     strategy.md, calendar.md, shorts.md, analyze.md,
-    repurpose.md, monetize.md, competitor.md, metadata.md, ideate.md
-  references/                       # 10 data-grounded reference guides
+    repurpose.md, monetize.md, competitor.md, metadata.md, ideate.md, edit.md
+  references/                       # 11 data-grounded reference guides
     algorithm-guide.md              # 3-system architecture, testing cascade, CTR/AVD benchmarks
     seo-playbook.md                 # Title/description/tags/chapters rules, VideoObject schema
     retention-scripting-guide.md    # Hook frameworks, pattern interrupts, CTA placement
@@ -55,15 +56,17 @@ skills/claude-youtube/
     monetization-guide.md           # YPP tiers, 7 revenue streams, brand deal rates
     repurposing-guide.md            # Hub/Hero/Help model, cross-platform workflows
     dataforseo-integration.md       # DataForSEO MCP tool reference for live data
+    vlog-editing-guide.md           # ffmpeg/ASR toolchain, pacing benchmarks, render recipes
   templates/                        # 9 channel-type templates
     education-channel.md, entertainment-channel.md, tutorial-channel.md,
     vlog-channel.md, review-channel.md, commentary-channel.md,
     niche-authority-channel.md, personal-brand-channel.md, shorts-first-channel.md
-  execution/                        # 6 Python scripts for YouTube API integration
+  execution/                        # 7 Python scripts (YouTube API + local editing)
     fetch_channel_data.py           # Channel stats + recent videos (~16 quota units)
     fetch_video_analytics.py        # Private analytics via OAuth
     search_competitor_videos.py     # Competitor video search (100 units/search)
     fetch_transcript.py             # Transcript extraction via yt-dlp
+    vlog_edit_tools.py              # Footage cleanup + speech-cut fixer for /youtube edit
     utils/quota_tracker.py          # 10K unit/day quota management
     utils/youtube_auth.py           # API key + OAuth 2.0 handler
 ```
@@ -189,6 +192,7 @@ All benchmarks and statistics in the reference guides are sourced and tagged:
 - **SEO rules** -- 10xCreator (3M+ videos analyzed), Backlinko, HubSpot
 - **MrBeast methodology** -- Validated at 100M+ views/video scale
 - **Thumbnail image prompts** -- Patterns adapted from the [Awesome Prompt Gallery](https://opennana.com/awesome-prompt-gallery/) curated by 松果先森
+- **Vlog auto-editing workflow** -- Adapted from [vlog-auto-edit](https://github.com/znyupup) by nyx研究所
 
 Data points tagged with `[2025]` reflect 2024-2025 platform changes.
 
@@ -200,6 +204,7 @@ Data points tagged with `[2025]` reflect 2024-2025 platform changes.
 |-------------|----------|-------|
 | Claude Code | Yes | Core dependency |
 | Python 3.8+ | For execution scripts | Not needed if providing data manually |
+| ffmpeg | For `/youtube edit` | Plus Whisper or FunASR for speech; Pillow if ffmpeg lacks `drawtext` |
 | YouTube API key | No | Enables automated channel data fetching |
 | DataForSEO MCP | No | Enables live keyword/trend data |
 | NanoBanana MCP | No | Enables AI thumbnail generation |

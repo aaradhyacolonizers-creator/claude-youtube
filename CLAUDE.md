@@ -5,8 +5,8 @@
 This repository contains **Claude YouTube**, a Claude Code skill for YouTube creators.
 It covers channel audits, video SEO, retention-engineered scripts, hook writing, thumbnail
 briefs, content strategy, Shorts optimization, analytics, monetization, competitor research,
-and cross-platform repurposing. 14 sub-skills, 10 reference guides, 9 channel templates,
-and 6 execution scripts.
+cross-platform repurposing, and automated vlog editing. 15 sub-skills, 11 reference guides,
+9 channel templates, and 7 execution scripts.
 
 ## Architecture
 
@@ -15,17 +15,18 @@ claude-youtube/
   CLAUDE.md                          # Project instructions (this file)
   skills/claude-youtube/             # Main skill (single skill, not orchestrator)
     SKILL.md                         # Entry point, routing, core rules
-    sub-skills/                      # 14 sub-skill instruction files (.md)
+    sub-skills/                      # 15 sub-skill instruction files (.md)
       audit.md, seo.md, script.md, hook.md, thumbnail.md,
       strategy.md, calendar.md, shorts.md, analyze.md,
-      repurpose.md, monetize.md, competitor.md, metadata.md, ideate.md
-    references/                      # 10 on-demand knowledge guides
+      repurpose.md, monetize.md, competitor.md, metadata.md, ideate.md, edit.md
+    references/                      # 11 on-demand knowledge guides
     templates/                       # 9 channel type templates
-    execution/                       # 6 Python scripts
+    execution/                       # 7 Python scripts
       fetch_channel_data.py         # YouTube Data API v3 channel stats
       fetch_transcript.py           # Video transcript extraction
       fetch_video_analytics.py      # Analytics data retrieval
       search_competitor_videos.py   # Competitor video search
+      vlog_edit_tools.py            # Footage cleanup + speech-cut fixer (edit)
       utils/                        # Shared Python utilities
 ```
 
@@ -47,6 +48,7 @@ claude-youtube/
 | `/youtube competitor` | Competitor analysis with parallel agents |
 | `/youtube metadata` | Copy-paste-ready upload package |
 | `/youtube ideate` | 10 ranked video ideas with keyword analysis |
+| `/youtube edit` | Raw footage to finished vlog via ffmpeg + ASR + vision |
 
 ## Development Rules
 
